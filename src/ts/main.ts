@@ -4,18 +4,20 @@ import { bookService } from "./serviceBase/bookService";
 const idForm = document.getElementById("idForm") as HTMLFormElement;
 const books = document.getElementById("books") as HTMLDivElement;
 idForm.addEventListener("submit", async (e) => {
+  books.innerHTML = "";
   e.preventDefault();
   const data = await bookService();
-
   for (let i = 0; i < 10; i++) {
-    let j = "my" + (i + 1);
+    let j: string = "my" + i; // generera unik id i varje loop
     const book = document.createElement("div");
 
     const bookTitle = document.createElement("p");
     const authorName = document.createElement("p");
     const img = document.createElement("img") as HTMLImageElement;
 
-    let s = data.docs[i].isbn[0];
+    const s = data.docs[i].isbn[0];
+    console.log(s);
+
     const url2 = `https://covers.openlibrary.org/b/isbn/${s}-L.jpg`;
 
     book.addEventListener("click", () => {
@@ -33,18 +35,20 @@ idForm.addEventListener("submit", async (e) => {
     bookTitle.className = "title";
     authorName.className = "author";
     img.className = "img";
-    img.setAttribute("id", j);
+    img.setAttribute("id", j); // varje img tag får en unik id
 
     books?.appendChild(book);
     book.appendChild(img);
     book.appendChild(bookTitle);
     book.appendChild(authorName);
-    const getWidth = document.getElementById(j) as HTMLImageElement;
+
+    const getWidth = document.getElementById(j) as HTMLImageElement; // hämtar varje imgTag med de unik id som de har fått
     getWidth.onload = () => {
-      const imgWidth = getWidth.naturalWidth;
-      console.log("number " + i + " w=" + imgWidth);
-      if (imgWidth < 33) {
-        img.src =
+      //funktionen laddar bilden
+      const imgWidth = getWidth.naturalWidth; // sätter bildens bred i en variable
+      if (imgWidth < 20) {
+        // kollar om bilden bred är mindre än 20 px
+        img.src = // om bildens bred är mindre än 20 px så ändras bildens SRC
           "https://2.bp.blogspot.com/-VZ0RvMPWrQo/TarvEtTJRjI/AAAAAAAADs0/DCjbJ-w3IE0/s1600/j0439527.jpg";
       }
     };
