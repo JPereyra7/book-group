@@ -8,7 +8,7 @@ idForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const data = await bookService();
   for (let i = 0; i < 10; i++) {
-    let j: string = "my" + i; // generera unik id i varje loop
+    let j: string = "my" + i; // genererar unik id i varje loop
     const book = document.createElement("div");
 
     const bookTitle = document.createElement("p");
@@ -16,7 +16,6 @@ idForm.addEventListener("submit", async (e) => {
     const img = document.createElement("img") as HTMLImageElement;
 
     const s = data.docs[i].isbn[0];
-    console.log(s);
 
     const url2 = `https://covers.openlibrary.org/b/isbn/${s}-L.jpg`;
 
@@ -44,52 +43,45 @@ idForm.addEventListener("submit", async (e) => {
 
     const getWidth = document.getElementById(j) as HTMLImageElement; // hämtar varje imgTag med de unik id som de har fått
     getWidth.onload = () => {
-      //funktionen laddar bilden
+      //funktionen laddar bilderna
       const imgWidth = getWidth.naturalWidth; // sätter bildens bred i en variable
       if (imgWidth < 20) {
-        // kollar om bilden bred är mindre än 20 px
+        // kollar om bildens bred är mindre än 20 px
         img.src = // om bildens bred är mindre än 20 px så ändras bildens SRC
           "https://2.bp.blogspot.com/-VZ0RvMPWrQo/TarvEtTJRjI/AAAAAAAADs0/DCjbJ-w3IE0/s1600/j0439527.jpg";
       }
     };
   }
 });
-//
-//const test = document.getElementById("test") as HTMLDivElement;
 
-/*   const inputID = document.getElementById("inputID") as HTMLInputElement;
-  const searchBook = inputID.value;
-  const url = `https://openlibrary.org/search.json?q=${searchBook}`;
-  const data = await get<IBookData>(url); */
+/*
+const test = document.getElementById("test") as HTMLDivElement;
+const c = data.docs[0].isbn;
 
-/*   console.log(data.docs[0]);
+for (let i = 0; i < 10; i++) {
+  let j: string = "my" + i;
+  console.log("vad är j" + typeof j);
 
-  const c = data.docs[0].isbn;
+  const s = c[i];
+  const imgUrl = `https://covers.openlibrary.org/b/isbn/${s}-M.jpg`;
+  const img = document.createElement("img") as HTMLImageElement;
+  const p = document.createElement("p") as HTMLParagraphElement;
 
-  for (let i = 0; i < 10; i++) {
-    let j = "my" + (i + 1);
-    console.log("vad är j" + typeof j);
+  img.src = imgUrl;
+  p.innerHTML = " number" + i;
 
-    const s = c[i];
-    const imgUrl = `https://covers.openlibrary.org/b/isbn/${s}-M.jpg`;
-    const img = document.createElement("img") as HTMLImageElement;
-    const p = document.createElement("p") as HTMLParagraphElement;
+  test.appendChild(p);
+  test.appendChild(img);
+  img.setAttribute("id", j);
 
-    img.src = imgUrl;
-    p.innerHTML = " number" + i;
-
-    test.appendChild(p);
-    test.appendChild(img);
-    img.setAttribute("id", j);
-
-    const myImg = document.getElementById(j) as HTMLImageElement;
-    myImg.onload = () => {
-      const imgW = myImg.naturalWidth;
-      console.log("number " + i + " w=" + imgW);
-      if (imgW < 20) {
-        img.src =
-          "https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?cs=srgb&dl=pexels-pixabay-159866.jpg&fm=jpg";
-      }
-    };
-  }
+  const myImg = document.getElementById(j) as HTMLImageElement;
+  myImg.onload = () => {
+    const imgW = myImg.naturalWidth;
+    console.log("number " + i + " w=" + imgW);
+    if (imgW < 20) {
+      img.src =
+        "https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?cs=srgb&dl=pexels-pixabay-159866.jpg&fm=jpg";
+    }
+  };
+}
  */
