@@ -8,7 +8,6 @@ idForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 const inputID = document.getElementById('inputID') as HTMLInputElement;
 const searchBook = inputID.value;
-//const bookContainer = document.getElementById('bookContainer') as HTMLDivElement;
 
 const url = `https://openlibrary.org/search.json?q=${searchBook}`;
 
@@ -21,15 +20,6 @@ if (books) {
 books.innerHTML = "";
 }
 
-// if (books) {
-//     books.innerHTML = "";
-// }
-
-// if (condition) {
-    
-// }
-// const lTen = 10;
-//"`https://covers.openlibrary.org/b/isbn/${}-S.jpg`"
 
 console.log(data);
 
